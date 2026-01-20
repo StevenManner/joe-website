@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="site-title">Business Name</title>
+    <meta name="description" content="Professional business website">
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --primary-dark: #5a67d8;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-alt {
+            background-color: var(--bg-light);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 40px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Content Section */
+        .content-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .content-section p {
+            font-size: 18px;
+            color: var(--text-light);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        /* Gallery/Services */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: var(--bg-light);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 40px auto 0;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 60px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(102, 126, 234, 0.2);
+            border-left-color: var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo" id="nav-logo">
+                <span id="nav-logo-text">BusinessName</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <!-- Dynamically populated -->
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Main Content - Dynamically Generated -->
+    <main id="main-content">
+        <div class="loading">
+            <div class="spinner"></div>
+            <p style="margin-top: 20px; color: var(--text-light);">Loading content...</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 id="footer-title">Company Name</h3>
+                <p id="footer-description">Your trusted partner for quality services.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul id="footer-links">
+                    <!-- Dynamically populated -->
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul id="footer-contact">
+                    <li id="footer-email">Email: contact@example.com</li>
+                    <li id="footer-phone">Phone: (555) 123-4567</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="current-year"></span> <span id="footer-company">Company Name</span>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Configuration
+        const CONFIG = {
+            contentSource: './data/content.json', // Path to content file
+            defaultColor: '#667eea'
+        };
+
+        // State
+        let siteContent = [];
+
+        // Initialize
+        async function init() {
+            try {
+                // Load content from JSON file
+                const response = await fetch(CONFIG.contentSource);
+                siteContent = await response.json();
+                
+                // Apply theme
+                applyTheme();
+                
+                // Render site
+                renderNavigation();
+                renderContent();
+                renderFooter();
+                
+                // Setup interactions
+                setupMobileMenu();
+                
+            } catch (error) {
+                console.error('Error loading content:', error);
+                showError();
+            }
+        }
+
+        // Apply color theme
+        function applyTheme() {
+            const themeContent = siteContent.find(item => item.page_name === 'Theme' && item.section === 'Colors');
+            if (themeContent && themeContent.content) {
+                document.documentElement.style.setProperty('--primary-color', themeContent.content);
+            }
+        }
+
+        // Render navigation
+        function renderNavigation() {
+            const navItems = siteContent.filter(item => item.page_name === 'Navigation' && item.active);
+            navItems.sort((a, b) => a.order - b.order);
+            
+            const navLinks = document.getElementById('navLinks');
+            const footerLinks = document.getElementById('footer-links');
+            
+            navLinks.innerHTML = navItems.map(item => 
+                `<li><a href="#${item.section.toLowerCase()}">${item.title}</a></li>`
+            ).join('');
+            
+            footerLinks.innerHTML = navItems.map(item => 
+                `<li><a href="#${item.section.toLowerCase()}">${item.title}</a></li>`
+            ).join('');
+            
+            // Update logo
+            const logoContent = siteContent.find(item => item.section === 'Logo');
+            if (logoContent) {
+                const logoText = document.getElementById('nav-logo-text');
+                if (logoContent.image_url) {
+                    logoText.innerHTML = `<img src="${logoContent.image_url}" alt="${logoContent.title}">`;
+                } else {
+                    logoText.textContent = logoContent.title;
+                }
+                document.getElementById('site-title').textContent = logoContent.title;
+            }
+        }
+
+        // Render main content
+        function renderContent() {
+            const mainContent = document.getElementById('main-content');
+            const pages = ['Home', 'About', 'Services', 'Contact'];
+            
+            let html = '';
+            
+            pages.forEach((pageName, index) => {
+                const pageContent = siteContent.filter(item => 
+                    item.page_name === pageName && item.active
+                ).sort((a, b) => a.order - b.order);
+                
+                if (pageContent.length === 0) return;
+                
+                const sectionClass = index % 2 === 0 ? 'section' : 'section section-alt';
+                
+                if (pageName === 'Home') {
+                    html += renderHomePage(pageContent);
+                } else if (pageName === 'Services') {
+                    html += renderServicesPage(pageContent, sectionClass);
+                } else if (pageName === 'Contact') {
+                    html += renderContactPage(pageContent, sectionClass);
+                } else {
+                    html += renderGenericPage(pageContent, sectionClass);
+                }
+            });
+            
+            mainContent.innerHTML = html;
+        }
+
+        // Render Home page (Hero section)
+        function renderHomePage(content) {
+            const hero = content.find(item => item.section === 'Hero');
+            if (!hero) return '';
+            
+            return `
+                <section class="hero">
+                    <div class="container">
+                        <h1>${hero.title}</h1>
+                        <p>${hero.content}</p>
+                        <a href="#contact" class="btn">Get Started</a>
+                        ${hero.image_url ? `<img src="${hero.image_url}" alt="${hero.title}" class="hero-image">` : ''}
+                    </div>
+                </section>
+            `;
+        }
+
+        // Render Services page
+        function renderServicesPage(content, sectionClass) {
+            const header = content.find(item => item.section === 'Header');
+            const services = content.filter(item => item.section !== 'Header');
+            
+            return `
+                <section id="services" class="${sectionClass}">
+                    <div class="container">
+                        <div class="content-section">
+                            <h2>${header ? header.title : 'Our Services'}</h2>
+                            <p>${header ? header.content : ''}</p>
+                            <div class="features">
+                                ${services.map(service => `
+                                    <div class="feature-card">
+                                        ${service.image_url ? `<div class="feature-icon">${service.image_url}</div>` : '<div class="feature-icon">✨</div>'}
+                                        <h3>${service.title}</h3>
+                                        <p>${service.content}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // Render Contact page
+        function renderContactPage(content, sectionClass) {
+            const header = content.find(item => item.section === 'Header');
+            
+            return `
+                <section id="contact" class="${sectionClass}">
+                    <div class="container">
+                        <div class="content-section">
+                            <h2>${header ? header.title : 'Contact Us'}</h2>
+                            <p>${header ? header.content : 'Get in touch with us today!'}</p>
+                            <form class="contact-form" id="contactForm">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" required></textarea>
+                                </div>
+                                <button type="submit" class="btn">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // Render generic page
+        function renderGenericPage(content, sectionClass) {
+            const header = content.find(item => item.section === 'Header');
+            const items = content.filter(item => item.section !== 'Header');
+            
+            return `
+                <section id="${content[0].page_name.toLowerCase()}" class="${sectionClass}">
+                    <div class="container">
+                        <div class="content-section">
+                            <h2>${header ? header.title : content[0].page_name}</h2>
+                            <p>${header ? header.content : ''}</p>
+                            <div class="features">
+                                ${items.map(item => `
+                                    <div class="feature-card">
+                                        <h3>${item.title}</h3>
+                                        <p>${item.content}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // Render footer
+        function renderFooter() {
+            const footerContent = siteContent.find(item => item.page_name === 'Footer');
+            if (footerContent) {
+                document.getElementById('footer-title').textContent = footerContent.title;
+                document.getElementById('footer-description').textContent = footerContent.content;
+                document.getElementById('footer-company').textContent = footerContent.title;
+            }
+            
+            const contactContent = siteContent.find(item => item.section === 'Contact Info');
+            if (contactContent) {
+                document.getElementById('footer-email').textContent = `Email: ${contactContent.content}`;
+            }
+            
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        }
+
+        // Mobile menu
+        function setupMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close menu when link clicked
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+
+        // Error state
+        function showError() {
+            document.getElementById('main-content').innerHTML = `
+                <div class="section">
+                    <div class="container" style="text-align: center;">
+                        <h2>Oops! Something went wrong</h2>
+                        <p>We're having trouble loading the content. Please try again later.</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
